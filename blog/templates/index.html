@@ -1,0 +1,170 @@
+{% extends "base_generic.html" %}
+{% block content %}
+{% load static %}
+    <!-- Home Content -->
+    <div id="content" class="site-content">
+        <div id="blog-wrapper">
+            <div class="blog-holder center-relative">
+                {% for post in post_latest %}
+                    {% if forloop.first %}
+                    <article id="post-1" class="blog-item-holder featured-post">
+                        <div class="entry-content relative">
+                            <div class="content-1170 center-relative">
+                                <div class="cat-links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                               <!-- 일상, 정보 -->                  
+                                                {% for c in post.category.all %}
+                                                    {{ c }}
+                                                    {% if not forloop.last %}
+                                                        ,
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="entry-date published">{{ post.createDate }}</div>
+                                <h2 class="entry-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h2>
+                                <div class="excerpt">
+                                    {% if post.is_content_more300 %}
+                                        {{ post.get_content_under300 }}
+                                    {% else %}
+                                        {{ post.content }}
+                                    {% endif %}
+                                    <a class="read-more" href="{{ post.get_absolute_url }}"></a>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </article>
+                    {% else %}
+                    <article id="post-{{ forloop.counter }}" class="blog-item-holder">
+                        <div class="entry-content relative">
+                            <div class="content-1170 center-relative">
+                                <h2 class="entry-title">
+                                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                </h2>
+                                <div class="cat-links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                            {% for c in post.category.all %}
+                                                {{ c }}
+                                                {% if not forloop.last %}
+                                                    ,
+                                                {% endif %}
+                                            {% endfor %}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="entry-date published">{{ post.createDate }}</div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </article>
+                    {% endif %}
+                {% endfor %}
+
+
+
+                <article id="post-3" class="blog-item-holder">
+                    <div class="entry-content relative">
+                        <div class="content-1170 center-relative">
+                            <h2 class="entry-title">
+                                <a href="{{ post.get_absolute_url }}">Everything is design</a>
+                            </h2>
+                            <div class="cat-links">
+                                <ul>
+                                    <li>
+                                        <a href="#">Art</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-date published">February 12, 2016</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </article>
+
+
+
+                <article id="post-4" class="blog-item-holder">
+                    <div class="entry-content relative">
+                        <div class="content-1170 center-relative">
+                            <h2 class="entry-title">
+                                <a href="{{ post.get_absolute_url }}">It’s all about experience</a>
+                            </h2>
+                            <div class="cat-links">
+                                <ul>
+                                    <li>
+                                        <a href="#">Life</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-date published">February 12, 2016</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </article>
+
+
+
+                <article id="post-5" class="blog-item-holder">
+                    <div class="entry-content relative">
+                        <div class="content-1170 center-relative">
+                            <h2 class="entry-title">
+                                <a href="{{ post.get_absolute_url }}">This is not my code</a>
+                            </h2>
+                            <div class="cat-links">
+                                <ul>
+                                    <li>
+                                        <a href="#">Coding</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-date published">February 12, 2016</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </article>
+
+
+
+                <article id="post-6" class="blog-item-holder">
+                    <div class="entry-content relative">
+                        <div class="content-1170 center-relative">
+                            <h2 class="entry-title">
+                                <a href="{{ post.get_absolute_url }}">Support human activity</a>
+                            </h2>
+                            <div class="cat-links">
+                                <ul>
+                                    <li>
+                                        <a href="#">Advocacy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="entry-date published">February 12, 2016</div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <div class="clear"></div>
+            <div class="block load-more-holder">LOAD MORE ENTRIES</div>
+        </div>
+
+        <div class="featured-image-holder">
+            <div class="featured-post-image"
+                style="background-image: url({% static 'demo-images/featured-image.jpg' %})"></div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+
+{% endblock %}
